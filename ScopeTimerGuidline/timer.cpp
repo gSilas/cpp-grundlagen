@@ -10,5 +10,5 @@ ScopeTimer::ScopeTimer(int name){
 
 ScopeTimer::~ScopeTimer(){
 	timer = clock() - timer;
-	std::clog << "Timer: " << name << " Sekunden: " << static_cast<float>(timer) / (CLOCKS_PER_SEC / 1000) << std::endl;
+	std::clog << "Timer: " << name << " Sekunden: " << static_cast<float>(timer) / (CLOCKS_PER_SEC*1000) << std::endl;
 }
