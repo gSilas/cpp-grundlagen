@@ -18,10 +18,14 @@ public:
 
 
   /// Returns the number of valid objects.
-  unsigned int getCount(); // TODO: Implement inline.
+  unsigned int getCount() {
+	  return m_count;
+  }// TODO: Implement inline.
 
   /// Returns the capacity of the internal array.
-  unsigned int getCapacity(); // TODO: Implement inline.
+  unsigned int getCapacity() {
+	  return m_capacity;
+  }// TODO: Implement inline.
 
 
   /// Reallocates the internal array to at least a given capacity.
