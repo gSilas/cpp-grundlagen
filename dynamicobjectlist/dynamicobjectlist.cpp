@@ -3,14 +3,16 @@
 
 
 DynamicObjectList::DynamicObjectList() {
-	m_capacity = 32;
+	m_capacity = 5;
 	m_count = 0;
 	m_list = new Object *[m_capacity];
 }
 
 DynamicObjectList::~DynamicObjectList() {
-	while (m_count > 0)
-		this->destroyObject(m_count--);
+	int count = m_count;
+	while (count > 0) {
+		destroyObject(--count);
+	}
 	delete[] m_list;
 }
 

@@ -1,10 +1,13 @@
 #include <iostream>
-
+#define _CrTDBG_MAP_ALLOC
+#include <stdlib.h>
+#include <crtdbg.h>
 #include "dynamicobjectlist.hpp"
 #include "object.h"
 
 int main()
 {
+	_CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
   DynamicObjectList list;
 
   std::cout << "Created object back, with the name \"" << list.createObject_back("first")->GetName() << std::endl;
