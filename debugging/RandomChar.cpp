@@ -1,15 +1,13 @@
+
 #include "RandomChar.h"
-static const char m_AllPossibleChars[] = { "01234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!§$%&?@" };
+
+int const  RandomChar::m_Length = 71;
+char const  RandomChar::m_AllPossibleChars[m_Length] = { "01234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!§$%&?@" };
+
 RandomChar::RandomChar()
 {
 }
 
 RandomChar::~RandomChar()
 {
-}
-
-
-char RandomChar::getRandomChar()
-{
-	return m_AllPossibleChars[rand() % m_Length];
 }

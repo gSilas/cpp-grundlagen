@@ -16,15 +16,15 @@
 
 // Should return the reference to a sum of two ints
 // TODO: rewrite this as a template (without the bug)
-int result;
 
 int& sumTheElements(int a, int b)
 {
-    result = a + b;
-    return result;
+	int value = a + b;
+	int& result = value;
+	return result;
 }
 
-void main()
+int main()
 {
     // using a bit of random here.
     srand(time(nullptr)); //initialize random seed based on time
@@ -33,12 +33,12 @@ void main()
     TestObject anObject = TestObject(30);
 
     // Name differences between pointers and references
-    TestObject *anotherObject = new TestObject(2);
+    TestObject anotherObject = TestObject(2);
 
     // When should we use pointers, references and values? why?
     TestObject &referenceToAnObject = anObject;
 
-    TestObject &referenceToAnotherObject = *anotherObject;
+    TestObject &referenceToAnotherObject = anotherObject;
 
     TestObject* pointerToAnObject = &anObject;
 
@@ -65,11 +65,6 @@ void main()
     std::cout << "And again outside the scope: " << std::endl;
     std::cout << TotalElementNumber << std::endl;
 
-
-    delete anotherObject;
-    delete pointerToAnObject;
-    delete pointerToAnotherObject;
-
-
+	return 0;
 }
 

@@ -1,3 +1,4 @@
+
 #ifndef  RANDOMCHAR_H
 #define RANDOMCHAR_H
 
@@ -11,11 +12,15 @@ class RandomChar
 public:
     RandomChar();
     ~RandomChar();
-	static char RandomChar::getRandomChar();
+
+    static const char RandomChar::getRandomChar()
+    {
+        return m_AllPossibleChars[rand() % m_Length];
+    }
 
 private:
-	static int const m_Length = 71;
-	static const char m_AllPossibleChars[m_Length];
+    static int const m_Length;
+    static char const m_AllPossibleChars[];
 };
 
 #endif // ! RANDOMCHAR_H
