@@ -45,7 +45,7 @@ void DynamicObjectList::reserve(unsigned int capacity)
 
 void DynamicObjectList::shrink()
 {
-	m_capacity = (int)pow(2, m_count);
+	m_capacity = 3 * m_count;
 }
 
 Object* DynamicObjectList::createObject_back(char* name)
@@ -168,58 +168,34 @@ DynamicObjectList & DynamicObjectList::operator|=(const DynamicObjectList &l)
 		push_back(&l[index]);
 		index++;
 	}
+	sort();
 	return *this;
 }
 
 DynamicObjectList & DynamicObjectList::operator&=(const DynamicObjectList &l)
 {
-	DynamicObjectList a(*this);
 	DynamicObjectList b(l);
 
-	if(a.getCount() < b.getCount())
+	for (int i = 0; i <getCount(); i++)
 	{
-		for(int i = 0; i < a.getCount(); i++)
+		bool wasfound = false;
+
+		for (int j = 0; j < b.getCount(); j++)
 		{
-			bool wasfound = false;
-			for(int j = 0; j < b.getCount(); j++)
+			if (b[j] == *getAt(i))
 			{
-				if (i == a.getCount())
-					break;
-				if (a[i] == b[j])
-				{
-					b.destroyObject(j);
-					wasfound = true;
-				}
-				if(!wasfound && (j == (b.getCount() - 1)))
-				{
-					a.destroyObject(i);
-				}
-			}
+				wasfound = true;
+			}			
 		}
-		return a;
-	}
-	else
-	{
-		for (int i = 0; i < b.getCount(); i++)
+
+		if (!wasfound)
 		{
-			bool wasfound = false;
-			for (int j = 0; j < a.getCount(); j++)
-			{
-				if (i == b.getCount())
-					break;
-				if (b[i] == a[j])
-				{
-					a.destroyObject(j);
-					wasfound = true;
-				}
-				if (!wasfound && (j == (b.getCount() - 1)))
-				{
-					b.destroyObject(i);
-				}
-			}
+			destroyObject(i);
+			i=0;
 		}
-		return b;
+
 	}
+	return *this;
 }
 
 Object & DynamicObjectList::operator[](const unsigned int index) const
