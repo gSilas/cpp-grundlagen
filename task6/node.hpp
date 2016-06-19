@@ -9,7 +9,7 @@
 ///	\details An expression could contain variable names instead of values.
 ///		During evaluation the map is used to lookup the current values of the
 ///		specific variable.
-///	
+///
 ///		This is only a typedef to reduce the code size.
 typedef std::unordered_map<std::string, int> VariableMap;
 
@@ -26,10 +26,10 @@ public:
 
 	/// \brief Each child class must know how to evaluate itself
 	/// \param [in] _varMap Read access to the variable mapping.
-	/// 
+	///
 	///		When trying to evaluate a string value first use
-	///		´_varMap->find(valueString)´. 
-	///		´find´ returns an iterator which is equal to _varMap->end() when
+	///		ï¿½_varMap->find(valueString)ï¿½.
+	///		ï¿½findï¿½ returns an iterator which is equal to _varMap->end() when
 	///		the key cannot be found.
 	///		If there is an entry with that name use its value, otherwise do a
 	///		node specific evaluation.
@@ -38,14 +38,14 @@ public:
 	// TODO: the destructor
 	~Node()
 	{
-		
+
 	}
 	/// \brief Create a string representation for the expression
 	/// \details
 	///		Use the toString() method of the children and create a new one
 	///		by concatenation or a sstream. For operators use brackets to make
 	///		the output unequivocal.
-	/// 
+	///
 	///		Question: Why not return a pointer or reference?
 	virtual std::string toString() const = 0;
 
@@ -63,3 +63,4 @@ private:
 // TODO
 // Write a stream operator << which uses the toString() method to create a
 // representation of the expression.
+std::ostream &operator<<(std::ostream &lhs, const Node &rhs);

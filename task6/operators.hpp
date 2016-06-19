@@ -10,7 +10,7 @@ public:
 	/// \brief Must have two defined children -> references are a good choice.
 	/// \details You need to COPY the nodes to have an own node*. To do that
 	///		you will need to add a clone() function which returns a real copy
-	///		of the calling object by a ´Node*´.
+	///		of the calling object by a ï¿½Node*ï¿½.
 	///		Question: Is there an other solution and if not why?
 	OpAdd(const Node& lhs, const Node& rhs);
 
@@ -22,9 +22,13 @@ public:
 	/// \brief Implements the clone operator. TODO: have a look at the
 	///		implementation.
 	virtual Node* clone() const override;
-
+ ~OpAdd();
 	// TODO: fill this class
 	// TODO: don't forget the destructor
+
+	    std::string toString() const override;
+
+	    int evaluate(const VariableMap *_varMap) const override;
 
 private:
 	Node* m_children[2];
@@ -53,6 +57,11 @@ public:
 
 	// TODO: fill this class
 	// TODO: don't forget the destructor
+	~OpMul();
+
+	    std::string toString() const override;
+
+	    int evaluate(const VariableMap *_varMap) const override;
 
 private:
 	Node* m_children[2];
@@ -81,6 +90,11 @@ public:
 
 	// TODO: fill this class
 	// TODO: don't forget the destructor
+	~OpNegate();
+
+    std::string toString() const override;
+
+    int evaluate(const VariableMap *_varMap) const override;
 
 private:
 	Node* m_child;

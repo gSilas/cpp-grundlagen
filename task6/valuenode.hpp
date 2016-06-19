@@ -16,7 +16,11 @@ public:
 	virtual Node* clone() const override;
 
 	// TODO: fill this class
+	~Value();
 
+    std::string toString() const override;
+
+    int evaluate(const VariableMap *_varMap) const override;
 private:
 	/// \brief Store the value as string.
 	/// \details Imagine you parsed an input and you don't want to call
